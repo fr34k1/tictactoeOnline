@@ -8,19 +8,24 @@ from sys import exit
 
 from time import sleep
 
-
 from tictactoe import Tictactoe
 
+'''
+	Server hecho por un noob 
+'''
 
 class ServerTic:
-
+	
+	'''
+		en el constructor creo bindeo y pongo a escuchar el socket
+	'''
 	def __init__(self):	
-		self.tic = Tictactoe()
+		self.tic = Tictactoe() # esta prop me sirve para poder comprobar el estado del juego y comprobar si alguien ha ganado lo hago modificando el tablero que es una prop de la clase
 		#board=[[0,0,0],[0,0,0],[0,0,0]]
 		self.players ={
 					'player1':None,
 					'player2':None
-				}
+				} #diccionario que guarda los sockets del jugador 1 ygugador 2
 		self.server = socket(AF_INET,SOCK_STREAM)
 		self.host = gethostname()
 		self.port = 5000
@@ -32,14 +37,19 @@ class ServerTic:
 		print("SERVER LISTENING ON ",self.host,self.port)
 		self.turno=None
 	
+	'''
+		esta funcion maneja las conexiones nuevas
+	'''
 	def clientHandler(self,s,addr):
-
+		
 		print("El cliente ",addr[0],":",addr[1]," se ha conectado\n")
 		
 		buff=s.recv(1024)
 		message=str(buff)
 		print(buff)
-
+		
+		## si no esta seteado player 1 en el dic entonces lo setea de lo contrario setea player 2 al socket actual
+		
 		if not self.players['player1']:
 			self.players['player1']=s
 			s.send(self.encodeMsg("[Server Msg]- Te has conectado al servidor"))
