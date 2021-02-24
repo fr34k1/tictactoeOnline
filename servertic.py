@@ -16,7 +16,7 @@ class ServerTic:
 
 	def __init__(self):	
 		self.tic = Tictactoe()
-		board=[[0,0,0],[0,0,0],[0,0,0]]
+		#board=[[0,0,0],[0,0,0],[0,0,0]]
 		self.players ={
 					'player1':None,
 					'player2':None
