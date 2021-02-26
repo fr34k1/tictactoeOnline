@@ -8,7 +8,7 @@ from sys import exit
 
 from time import sleep
 
-from tictactoe import Tictactoe
+from tictactoe import Tictactoe, Player
 
 
 class Player:
