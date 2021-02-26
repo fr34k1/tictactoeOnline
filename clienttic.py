@@ -1,6 +1,6 @@
 
 
-
+from os import system
 
 from socket import socket,AF_INET,SOCK_STREAM,gethostname,error
 
@@ -9,7 +9,28 @@ from sys import exit
 from time import sleep
 
 from tictactoe import Tictactoe
-from player import Player
+
+
+class Player:
+
+
+	def __init__(self,name):
+		self.name = name
+		self.movement=None
+
+	def name(self):
+		return self.name
+
+	def doPlay(self,movements):
+
+		while True:
+			self.movement = input("[Game Client] Do your movement\n")
+			if self.movement in movements:
+				break
+			
+			print("[Game Client] Entrada invalida")
+		return self.movement
+
 
 class ClientTic:
 
@@ -32,6 +53,7 @@ class ClientTic:
 			self.client.connect((self.host,self.port))
 			self.client.send(self.encodeMsg("Gracias bro"))
 			while True:
+
 				buff=self.client.recv(1024)
 				res=str(buff)
 				if "[Server Msg]" in res:
@@ -40,6 +62,7 @@ class ClientTic:
 					self.handlePlayerMovement(res)
 				elif "[Player Turn]" in res:
 					self.handlePlayerTurns(res)
+
 				sleep(3)
 		except error as e:
 			print(e)
@@ -50,10 +73,10 @@ class ClientTic:
 	def handleServerMsg(self,res):
 		if not self.player:
 			if 'X' in res:
-				print("soy x")
+				#print("soy x")
 				self.player = Player('X')
 			elif 'O':
-				print("soy o")
+				#print("soy o")
 				self.player = Player('O')
 		print(res)
 
@@ -69,8 +92,13 @@ class ClientTic:
 
 	def handlePlayerTurns(self,res):
 		move = self.player.doPlay(self.tic.theBoard.keys())
+		system('cls')
 		self.tic.printBoard(move,self.player.name)
 		self.client.send(self.encodeMsg(move))
+
+
+
+
 
 client=ClientTic()
 
