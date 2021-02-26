@@ -20,7 +20,10 @@ class ServerTic:
 		self.server.listen(20)
 		print("SERVER LISTENING ON ",self.host,self.port)
 		
-			
+	'''
+		esta function es manejada por el hilo cada vez que se detecta una conexion se crea un hilo y cuando el 2do jugador se conecta
+		se usa el hilo del socket del jugador 2 para dar lugar a la partida
+	'''
 
 	def clientHandler(self,s,addr):
 
