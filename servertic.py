@@ -62,7 +62,9 @@ class ServerTic:
 
 
 
-
+'''
+	Funcion que pone a correr el servidor
+'''
 	
 	def start(self):
 		try:
