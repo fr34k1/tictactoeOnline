@@ -1,9 +1,6 @@
 # tictactoeOnline
-Una version online y sencilla del juego tictactoe en consola bien sencillita para beginners.
 
-Esta hechacon hilos
-
-sin capturar errores de conexion asique ojo
+Una version con sockets y sencilla del juego tictactoe en consola bien sencilla.
 
 para correrlo solamente arrancas el server en una consola o terminal
 
